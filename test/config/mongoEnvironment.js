@@ -9,6 +9,14 @@ module.exports = class MongoEnvironment extends NodeEnvironment {
         // Set the connection pool size to 50 for the testing environment.
         // TODO: Timeouts
         // Set the write timeout limit to 2500 milliseconds for the testing environment.
+        {
+          poolSize: 50, ssl: true, wtimeout: 2500
+        }, function(err, db) {
+          assert.equal(null, err);
+          console.log("Connected correctly to server");
+        
+          db.close();
+        },
         { useNewUrlParser: true }
       )
       await super.setup()

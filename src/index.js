@@ -26,6 +26,14 @@ MongoClient.connect(
   // Set the poolSize to 50 connections.
   // TODO: Timeouts
   // Set the write timeout limit to 2500 milliseconds.
+  {
+    poolSize: 50, ssl: true, wtimeout: 2500
+  }, function(err, db) {
+    assert.equal(null, err);
+    console.log("Connected correctly to server");
+  
+    db.close();
+  },
   { useNewUrlParser: true },
 )
   .catch(err => {
